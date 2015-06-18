@@ -19,4 +19,25 @@ class MemeView: UIView {
     @IBOutlet var albumButton: UIButton!
     @IBOutlet var takePhotoButton: UIButton!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        enableShareButton(false)
+    }
+    
+    func enableShareButton(enable: Bool) {
+        self.shareButton.enabled = enable
+    }
+    
+    func fillWithImage(image:UIImage) {
+        memeImageView.image = image
+        
+        enableShareButton(true)
+    }
+    
+    func clearAll() {
+        memeImageView.image = nil
+        topTextField.text = ""
+        bottomTextField.text = ""
+    }
 }

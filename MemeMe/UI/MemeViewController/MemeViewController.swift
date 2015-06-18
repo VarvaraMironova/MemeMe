@@ -12,6 +12,12 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,
                                             UINavigationControllerDelegate,
                                             UITextFieldDelegate
 {
+    var memeModel         : MemeModel!
+    var topText           : NSString!
+    var bottomText        : NSString!
+    var originalImage     : UIImage!
+    var memedImage        : UIImage!
+    
     @IBOutlet var rootView: MemeView?
     
     deinit {
@@ -29,12 +35,18 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,
     }
 
     @IBAction func onCancelButton(sender: AnyObject) {
+        memedImage = nil
+        originalImage = nil
+        topText = nil
+        bottomText = nil
         
+        rootView?.clearAll()
     }
     
     @IBAction func onPhotoButton(sender: AnyObject) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
+        imagePicker.allowsEditing = true
         
         switch (sender.tag) {
             //takePhoto
@@ -70,11 +82,29 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        originalImage = info[UIImagePickerControllerEditedImage] as! UIImage
         
+        rootView?.fillWithImage(originalImage)
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        
+        switch (textField.tag) {
+            //topTextField
+        case 1:
+            topText = textField.text
+            break
+            
+            //bottomTextField
+        case 2:
+            bottomText = textField.text
+            break
+            
+        default:
+            break
+            
+        }
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
