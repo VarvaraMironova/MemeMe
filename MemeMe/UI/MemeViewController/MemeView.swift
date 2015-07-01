@@ -32,10 +32,6 @@ class MemeView: UIView {
         self.shareButton.enabled = enable
     }
     
-    func enableCancelButton(enable:Bool) {
-        self.cancelButton.enabled = enable
-    }
-    
     func fillWithImage(image:UIImage) {
         memeImageView.image = image
         

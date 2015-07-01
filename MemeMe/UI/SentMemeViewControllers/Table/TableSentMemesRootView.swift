@@ -10,4 +10,10 @@ import UIKit
 
 class TableSentMemesRootView: SentMemesRootView {
     @IBOutlet var memesTableView: UITableView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        memesTableView.tableFooterView = UIView()
+    }
 }
