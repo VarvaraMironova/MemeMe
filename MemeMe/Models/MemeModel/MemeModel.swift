@@ -8,11 +8,11 @@
 
 import UIKit
 
-class MemeModel: NSObject {
-    var topText     : NSString!
-    var bottomText  : NSString!
+class MemeModel {
+    var topText      : NSString!
+    var bottomText   : NSString!
     var originalImage: UIImage!
-    var memedImage  : UIImage!
+    var memedImage   : UIImage!
     
     deinit {
         topText = nil
