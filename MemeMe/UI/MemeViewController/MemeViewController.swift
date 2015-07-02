@@ -45,10 +45,14 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,
         
         let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
         activityViewController.completionWithItemsHandler = {activity, success, items, error in
-            self.save()
-            self.dismissViewControllerAnimated(true, completion: nil)
-            let tabBarController = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
-            self.presentViewController(tabBarController, animated: true, completion: nil)
+            if (success) {
+                self.save()
+                
+                let tabBarController = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
+                self.presentViewController(tabBarController, animated: true, completion: nil)
+            } else {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
         }
         
         self.presentViewController(activityViewController, animated: true, completion: nil)
@@ -196,7 +200,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,
         // Render view to an image
         let contentFrame = rootView!.contentView.frame
         
-        UIGraphicsBeginImageContext(contentFrame.size)
+        UIGraphicsBeginImageContext(rootView!.frame.size)
         rootView!.contentView.drawViewHierarchyInRect(contentFrame, afterScreenUpdates: true)
         let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
         

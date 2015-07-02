@@ -11,6 +11,13 @@ import UIKit
 class TableSentMemesViewController: SentMemesViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet var rootView: TableSentMemesRootView!
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        let selectedCell = sender as! SentMemesTableViewCell
+        selectedItem = rootView.memesTableView.indexPathForCell(selectedCell)!.row
+        
+        super.prepareForSegue(segue, sender: sender)
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return memes.count
     }

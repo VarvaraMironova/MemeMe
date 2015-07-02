@@ -9,7 +9,8 @@
 import UIKit
 
 class SentMemesViewController: UIViewController {
-    var memes             : [MemeModel]!
+    var memes        : [MemeModel]!
+    var selectedItem : NSInteger!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -17,8 +18,14 @@ class SentMemesViewController: UIViewController {
         let delegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
         memes = delegate.memes
     }
-
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        let destinationController = segue.destinationViewController as! DetailViewController
+        
+        destinationController.memeModel = memes[selectedItem]
+    }
+    
     @IBAction func onCloseButton(sender: AnyObject) {
-        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
     }
 }

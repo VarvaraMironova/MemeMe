@@ -25,6 +25,8 @@ class MemeView: UIView {
         
         fillPlaceHolders()
         
+        UITextField.appearance().tintColor = UIColor(red: 83.0/255.0, green: 166.0/255.0, blue: 124.0/255.0, alpha: 1.0)
+        
         enableShareButton(false)
     }
     
@@ -36,8 +38,6 @@ class MemeView: UIView {
         memeImageView.image = image
         
         enableShareButton(true)
-        
-        self.layoutIfNeeded()
     }
     
     func clearAll() {

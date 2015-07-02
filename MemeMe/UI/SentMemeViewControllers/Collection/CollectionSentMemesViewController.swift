@@ -11,6 +11,13 @@ import UIKit
 class CollectionSentMemesViewController: SentMemesViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet var rootView: CollectionSentMemesRootView!
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        let selectedCell = sender as! SentMemesCollectionViewCell
+        selectedItem = rootView.memesCollectionView.indexPathForCell(selectedCell)!.row
+        
+        super.prepareForSegue(segue, sender: sender)
+    }
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return memes.count
     }

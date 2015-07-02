@@ -15,6 +15,9 @@
 		C7108D391B43DA040003D07D /* 87.png in Resources */ = {isa = PBXBuildFile; fileRef = C7108D371B43DA040003D07D /* 87.png */; };
 		C7108D3A1B43DA040003D07D /* 180.png in Resources */ = {isa = PBXBuildFile; fileRef = C7108D381B43DA040003D07D /* 180.png */; };
 		C7108D3C1B43DF360003D07D /* LaunchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C7108D3B1B43DF360003D07D /* LaunchImage.png */; };
+		C7108D401B45386E0003D07D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7108D3F1B45386E0003D07D /* DetailViewController.swift */; };
+		C7108D421B4538900003D07D /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7108D411B4538900003D07D /* DetailView.swift */; };
+		C7108D441B453B8A0003D07D /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = C7108D431B453B8A0003D07D /* back.png */; };
 		C726DA6D1B2F5D2C006D5229 /* arrow_side.png in Resources */ = {isa = PBXBuildFile; fileRef = C726DA611B2F5D2C006D5229 /* arrow_side.png */; };
 		C726DA6E1B2F5D2C006D5229 /* album.png in Resources */ = {isa = PBXBuildFile; fileRef = C726DA621B2F5D2C006D5229 /* album.png */; };
 		C726DA701B2F5D2C006D5229 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = C726DA641B2F5D2C006D5229 /* camera.png */; };
@@ -64,6 +67,9 @@
 		C7108D371B43DA040003D07D /* 87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 87.png; sourceTree = "<group>"; };
 		C7108D381B43DA040003D07D /* 180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 180.png; sourceTree = "<group>"; };
 		C7108D3B1B43DF360003D07D /* LaunchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchImage.png; sourceTree = "<group>"; };
+		C7108D3F1B45386E0003D07D /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		C7108D411B4538900003D07D /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		C7108D431B453B8A0003D07D /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		C726DA611B2F5D2C006D5229 /* arrow_side.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_side.png; sourceTree = "<group>"; };
 		C726DA621B2F5D2C006D5229 /* album.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = album.png; sourceTree = "<group>"; };
 		C726DA641B2F5D2C006D5229 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
@@ -129,9 +135,19 @@
 			path = icons;
 			sourceTree = "<group>";
 		};
+		C7108D3D1B4538530003D07D /* DetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C7108D3F1B45386E0003D07D /* DetailViewController.swift */,
+				C7108D411B4538900003D07D /* DetailView.swift */,
+			);
+			path = DetailViewController;
+			sourceTree = "<group>";
+		};
 		C726DA5F1B2F5D2C006D5229 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C7108D431B453B8A0003D07D /* back.png */,
 				C7108D3B1B43DF360003D07D /* LaunchImage.png */,
 				C7108D2E1B43D8440003D07D /* icons */,
 				C726DAC61B35DC80006D5229 /* @2x */,
@@ -151,6 +167,7 @@
 			children = (
 				C726DA7B1B2F6043006D5229 /* MemeViewController */,
 				C726DAD41B35E2F9006D5229 /* SentMemeViewControllers */,
+				C7108D3D1B4538530003D07D /* DetailViewController */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -386,6 +403,7 @@
 				C726DA741B2F5D2C006D5229 /* gallery.png in Resources */,
 				C7AB61FA1B20D9A300DBFA89 /* Images.xcassets in Resources */,
 				C726DA6E1B2F5D2C006D5229 /* album.png in Resources */,
+				C7108D441B453B8A0003D07D /* back.png in Resources */,
 				C726DAD01B35DC80006D5229 /* table@2x.png in Resources */,
 				C726DA701B2F5D2C006D5229 /* camera.png in Resources */,
 				C7108D351B43D9330003D07D /* 80.png in Resources */,
@@ -422,6 +440,8 @@
 				C726DAEF1B35E679006D5229 /* TableSentMemesViewController.swift in Sources */,
 				C726DAAE1B335EAF006D5229 /* MemeModel.swift in Sources */,
 				C726DAEE1B35E679006D5229 /* TableSentMemesRootView.swift in Sources */,
+				C7108D421B4538900003D07D /* DetailView.swift in Sources */,
+				C7108D401B45386E0003D07D /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
