@@ -21,6 +21,12 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet var rootView: MemeView?
     
     deinit {
+        memeModel = nil
+        topText = nil
+        bottomText = nil
+        originalImage = nil
+        memedImage = nil
+        
         unsubscriptToKeyboardNotifications()
     }
     
@@ -28,8 +34,6 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,
         super.init(coder: aDecoder)
         
         subscriptToKeyboardNotifications()
-        
-        clearMeme()
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -61,13 +65,11 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBAction func onCancelButton(sender: AnyObject) {
         rootView!.endEditing(true)
         
-        let alert : UIAlertController = UIAlertController(title: Constants.cancelAlertTitle,
-                                                        message: Constants.cancelAlertMessage,
+        let alert : UIAlertController = UIAlertController(title: Constants.kCancelAlertTitle,
+                                                        message: Constants.kCancelAlertMessage,
                                                  preferredStyle: .Alert)
         let defaultAction: UIAlertAction = UIAlertAction(title: "YES", style: .Default) {action -> Void in
-            self.clearMeme()
-            
-            self.rootView!.clearAll()
+            self.dismissViewControllerAnimated(true, completion: nil)
         }
         
         let cancelAction: UIAlertAction = UIAlertAction(title: "NO", style: .Cancel) {action -> Void in
@@ -92,8 +94,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,
             if (UIImagePickerController.isSourceTypeAvailable(.Camera)) {
                 imagePicker.sourceType = .Camera
             } else {
-                let alert : UIAlertController = UIAlertController(title: Constants.cameraAlertTitle,
-                                                                  message: Constants.cameraAlertMessage,
+                let alert : UIAlertController = UIAlertController(title: Constants.kCameraAlertTitle,
+                                                                  message: Constants.kCameraAlertMessage,
                                                                   preferredStyle: .Alert)
                 let cancelAction: UIAlertAction = UIAlertAction(title: "Ok", style: .Cancel) {action -> Void in
                     //Just dismiss the alert
@@ -132,7 +134,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,
             return false
         }
         
-        return count(textField.text.utf16) + count(string.utf16) - range.length <= Constants.maxTextFieldLength
+        return count(textField.text.utf16) + count(string.utf16) - range.length <= Constants.kMaxTextFieldLength
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
@@ -166,7 +168,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func keyboardDidShow(notification:NSNotification) {
         if (rootView!.isBottomTextFieldEditing()) {
-            rootView!.frame.origin.y += getKeyboardHeight(notification)
+            rootView!.frame.origin.y = 0
         }
     }
     
@@ -220,12 +222,5 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,
         let delegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
 
         delegate.memes.append(meme)
-    }
-    
-    func clearMeme() {
-        memedImage = nil
-        originalImage = nil
-        topText = ""
-        bottomText = ""
     }
 }

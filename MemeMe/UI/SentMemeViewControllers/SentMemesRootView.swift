@@ -9,8 +9,7 @@
 import UIKit
 
 class SentMemesRootView: UIView {
-    @IBOutlet var headerView : UIView!
-    @IBOutlet var headerLabel: UILabel!
-    @IBOutlet var closeButton: UIButton!
-    @IBOutlet var contentView: UIScrollView!
+    @IBOutlet var headerView    : UIView!
+    @IBOutlet var headerLabel   : UILabel!
+    @IBOutlet var addMemeButton : UIButton!
 }

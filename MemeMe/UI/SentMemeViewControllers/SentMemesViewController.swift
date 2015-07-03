@@ -12,20 +12,20 @@ class SentMemesViewController: UIViewController {
     var memes        : [MemeModel]!
     var selectedItem : NSInteger!
     
+    deinit {
+        memes = nil
+    }
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         let delegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
         memes = delegate.memes
     }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        let destinationController = segue.destinationViewController as! DetailViewController
+
+    @IBAction func onAddMemeButton(sender: AnyObject) {
+        let memeViewController = storyboard!.instantiateViewControllerWithIdentifier("MemeViewController") as! MemeViewController
         
-        destinationController.memeModel = memes[selectedItem]
-    }
-    
-    @IBAction func onCloseButton(sender: AnyObject) {
-        presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+        self.presentViewController(memeViewController, animated: true, completion: nil)
     }
 }

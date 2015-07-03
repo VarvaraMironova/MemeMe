@@ -11,11 +11,10 @@ import UIKit
 class TableSentMemesViewController: SentMemesViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet var rootView: TableSentMemesRootView!
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        let selectedCell = sender as! SentMemesTableViewCell
-        selectedItem = rootView.memesTableView.indexPathForCell(selectedCell)!.row
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
-        super.prepareForSegue(segue, sender: sender)
+        rootView.memesTableView.reloadData()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -27,5 +26,12 @@ class TableSentMemesViewController: SentMemesViewController, UITableViewDataSour
         cell.fillWithModel(memes[indexPath.row])
         
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let destinationController = storyboard!.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
+        destinationController.memeModel = memes[indexPath.row]
+
+        navigationController!.pushViewController(destinationController, animated: true)
     }
 }

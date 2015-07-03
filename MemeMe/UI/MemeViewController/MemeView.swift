@@ -40,24 +40,14 @@ class MemeView: UIView {
         enableShareButton(true)
     }
     
-    func clearAll() {
-        memeImageView.image = nil
-        topTextField.text = ""
-        bottomTextField.text = ""
-        
-        fillPlaceHolders()
-        
-        enableShareButton(false)
-    }
-    
     func clearPlaceHolders() {
         topTextField.placeholder = ""
         bottomTextField.placeholder = ""
     }
     
     func fillPlaceHolders() {
-        topTextField.placeholder = Constants.topPlaceHolder
-        bottomTextField.placeholder = Constants.bottomPlaceHolder
+        topTextField.placeholder = Constants.kTopPlaceHolder
+        bottomTextField.placeholder = Constants.kBottomPlaceHolder
     }
     
     func isBottomTextFieldEditing() -> Bool {

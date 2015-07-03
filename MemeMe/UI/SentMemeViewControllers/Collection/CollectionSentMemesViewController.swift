@@ -11,11 +11,10 @@ import UIKit
 class CollectionSentMemesViewController: SentMemesViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet var rootView: CollectionSentMemesRootView!
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        let selectedCell = sender as! SentMemesCollectionViewCell
-        selectedItem = rootView.memesCollectionView.indexPathForCell(selectedCell)!.row
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
-        super.prepareForSegue(segue, sender: sender)
+        rootView.memesCollectionView.reloadData()
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -27,6 +26,13 @@ class CollectionSentMemesViewController: SentMemesViewController, UICollectionVi
         cell.fillWithModel(memes[indexPath.row])
         
         return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let destinationController = storyboard!.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
+        destinationController.memeModel = memes[indexPath.row]
+        
+        navigationController!.pushViewController(destinationController, animated: true)
     }
 
 }

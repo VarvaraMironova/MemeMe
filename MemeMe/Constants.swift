@@ -7,12 +7,12 @@
 //
 
 struct Constants {
-    static let maxTextFieldLength = 24
+    static let kMaxTextFieldLength = 24
     
-    static let cancelAlertTitle   = ""
-    static let cancelAlertMessage = "Remove meme?"
-    static let cameraAlertTitle   = "Sory =("
-    static let cameraAlertMessage = "Camere is not available"
-    static let topPlaceHolder     = "TOP"
-    static let bottomPlaceHolder  = "BOTTOM"
+    static let kCancelAlertTitle   = ""
+    static let kCancelAlertMessage = "Remove meme?"
+    static let kCameraAlertTitle   = "Sorry =("
+    static let kCameraAlertMessage = "Camera is not available"
+    static let kTopPlaceHolder     = "TOP"
+    static let kBottomPlaceHolder  = "BOTTOM"
 }

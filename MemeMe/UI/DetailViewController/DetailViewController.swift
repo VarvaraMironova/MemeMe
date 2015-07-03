@@ -12,9 +12,13 @@ class DetailViewController: UIViewController {
     var memeModel         : MemeModel!
     
     @IBOutlet var rootView: DetailView!
+    
+    deinit {
+        memeModel = nil
+    }
 
     @IBAction func onBackButton(sender: AnyObject) {
-        presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+        navigationController!.popToRootViewControllerAnimated(true)
     }
     
     override func viewDidLoad() {
