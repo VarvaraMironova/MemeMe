@@ -8,23 +8,16 @@
 
 import UIKit
 
-class MemeModel {
+struct MemeModel {
     var topText      : NSString!
     var bottomText   : NSString!
     var originalImage: UIImage!
     var memedImage   : UIImage!
     
-    deinit {
-        topText = nil
-        bottomText = nil
-        originalImage = nil
-        memedImage = nil
-    }
-    
-    init(topText:NSString, bottomText:NSString, image:UIImage, memedImage:UIImage) {
+    init(topText:NSString, bottomText:NSString, originalImage:UIImage, memedImage:UIImage) {
         self.topText = topText
         self.bottomText = bottomText
-        self.originalImage = image
+        self.originalImage = originalImage
         self.memedImage = memedImage
     }
 }

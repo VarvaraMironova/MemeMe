@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 VarvaraMironova. All rights reserved.
 //
 
+//  Controller for editing meme
+
 import UIKit
 
 class MemeViewController: UIViewController, UIImagePickerControllerDelegate,
@@ -21,12 +23,6 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet var rootView: MemeView?
     
     deinit {
-        memeModel = nil
-        topText = nil
-        bottomText = nil
-        originalImage = nil
-        memedImage = nil
-        
         unsubscriptToKeyboardNotifications()
     }
     
@@ -36,18 +32,22 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,
         subscriptToKeyboardNotifications()
     }
     
+    //hide keyboard when tap on rootView or any its subview
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         rootView!.endEditing(true)
     }
     
     @IBAction func onShareButton(sender: AnyObject) {
+        //hide keyboard
         rootView!.endEditing(true)
         
         memedImage = generateMemedImage()
         
         rootView!.fillPlaceHolders()
         
+        //initialize and show activityViewController
         let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+        
         activityViewController.completionWithItemsHandler = {activity, success, items, error in
             if (success) {
                 self.save()
@@ -59,12 +59,14 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,
             }
         }
         
-        self.presentViewController(activityViewController, animated: true, completion: nil)
+        presentViewController(activityViewController, animated: true, completion: nil)
 }
 
     @IBAction func onCancelButton(sender: AnyObject) {
+        //hide keyboard
         rootView!.endEditing(true)
         
+        //initialize and show alert to conform/reject cancel action
         let alert : UIAlertController = UIAlertController(title: Constants.kCancelAlertTitle,
                                                         message: Constants.kCancelAlertMessage,
                                                  preferredStyle: .Alert)
@@ -79,7 +81,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,
         alert.addAction(defaultAction)
         alert.addAction(cancelAction)
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        presentViewController(alert, animated: true, completion: nil)
         
     }
     
@@ -103,7 +105,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,
                 
                 alert.addAction(cancelAction)
                 
-                self.presentViewController(alert, animated: true, completion: nil)
+                presentViewController(alert, animated: true, completion: nil)
             }
             
             break
@@ -118,7 +120,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,
             
         }
         
-        self.presentViewController(imagePicker, animated: true, completion: nil)
+        presentViewController(imagePicker, animated: true, completion: nil)
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
@@ -126,10 +128,14 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,
         
         rootView!.fillWithImage(originalImage)
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func                textField(textField: UITextField,
+        shouldChangeCharactersInRange range: NSRange,
+                   replacementString string: String) -> Bool
+    {
+        // limit characters count in textFields
         if (range.length + range.location > count(textField.text.utf16)) {
             return false
         }
@@ -213,10 +219,12 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func save() {
         //Create the meme
-        var meme = MemeModel(topText: self.topText,
-                          bottomText: self.bottomText,
-                               image: self.originalImage,
-                          memedImage: self.memedImage)
+        let topMemeText = topText == nil ? "" : topText
+        let bottomMemeText = bottomText == nil ? "" : bottomText
+        var meme = MemeModel(topText: topMemeText,
+                          bottomText: bottomMemeText,
+                       originalImage: originalImage,
+                          memedImage: memedImage)
         
         // Add it to the memes array in the Application Delegate
         let delegate = (UIApplication.sharedApplication().delegate as! AppDelegate)

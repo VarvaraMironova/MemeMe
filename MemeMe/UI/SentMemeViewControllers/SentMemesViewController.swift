@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 VarvaraMironova. All rights reserved.
 //
 
+// Parent view controller for viewControllers, which display sent memes by table and grid
+
 import UIKit
 
 class SentMemesViewController: UIViewController {
@@ -26,6 +28,6 @@ class SentMemesViewController: UIViewController {
     @IBAction func onAddMemeButton(sender: AnyObject) {
         let memeViewController = storyboard!.instantiateViewControllerWithIdentifier("MemeViewController") as! MemeViewController
         
-        self.presentViewController(memeViewController, animated: true, completion: nil)
+        presentViewController(memeViewController, animated: true, completion: nil)
     }
 }

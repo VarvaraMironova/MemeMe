@@ -9,16 +9,16 @@
 import UIKit
 
 class MemeView: UIView {
-    @IBOutlet var bottomTextField   : UITextField!
-    @IBOutlet var topTextField      : UITextField!
-    @IBOutlet var cancelButton      : UIButton!
-    @IBOutlet var shareButton       : UIButton!
-    @IBOutlet var headerView        : UIView!
-    @IBOutlet var memeImageView     : UIImageView!
-    @IBOutlet var bottomView        : UIView!
-    @IBOutlet var albumButton       : UIButton!
-    @IBOutlet var takePhotoButton   : UIButton!
-    @IBOutlet var contentView       : UIView!
+    @IBOutlet var bottomTextField : UITextField!
+    @IBOutlet var topTextField    : UITextField!
+    @IBOutlet var headerView      : UIToolbar!
+    @IBOutlet var cancelButton    : UIBarButtonItem!
+    @IBOutlet var shareButton     : UIBarButtonItem!
+    @IBOutlet var memeImageView   : UIImageView!
+    @IBOutlet var bottomView      : UIView!
+    @IBOutlet var albumButton     : UIButton!
+    @IBOutlet var takePhotoButton : UIButton!
+    @IBOutlet var contentView     : UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,11 +27,13 @@ class MemeView: UIView {
         
         UITextField.appearance().tintColor = UIColor(red: 83.0/255.0, green: 166.0/255.0, blue: 124.0/255.0, alpha: 1.0)
         
+        UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
+        
         enableShareButton(false)
     }
     
     func enableShareButton(enable:Bool) {
-        self.shareButton.enabled = enable
+        shareButton.enabled = enable
     }
     
     func fillWithImage(image:UIImage) {

@@ -13,8 +13,10 @@ class DetailViewController: UIViewController {
     
     @IBOutlet var rootView: DetailView!
     
-    deinit {
-        memeModel = nil
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        hidesBottomBarWhenPushed = true
     }
 
     @IBAction func onBackButton(sender: AnyObject) {

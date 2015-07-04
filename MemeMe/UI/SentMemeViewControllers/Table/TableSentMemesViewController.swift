@@ -14,6 +14,12 @@ class TableSentMemesViewController: SentMemesViewController, UITableViewDataSour
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        // In my opinion, it would be better to create arrayModel to store memes and make it observable.
+        // Array model should can load self and has property state (notLoaded, loaded, loading, etc.)
+        // TableViewDataSource (tableViewDelegate) and collectionViewDataSource (CollectionViewDelegate)
+        // should observe arrayModel. if it not loaded -> show activity indicator in rootView;
+        // when they get notification of modelDidLoad -> hide activityIndicator
+        // Please, let me know if I'm wrong
         rootView.memesTableView.reloadData()
     }
     
