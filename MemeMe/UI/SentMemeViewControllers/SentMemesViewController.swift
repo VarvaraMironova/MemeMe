@@ -11,23 +11,24 @@
 import UIKit
 
 class SentMemesViewController: UIViewController {
-    var memes        : [MemeModel]!
-    var selectedItem : NSInteger!
+    var memes        : [MemeModel]?
+    var selectedItem : NSInteger?
     
-    deinit {
-        memes = nil
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //get and save [MemeModel]
+        if let delegate = UIApplication.shared.delegate as? AppDelegate {
+            memes = delegate.memes
+        }
     }
     
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        let delegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
-        memes = delegate.memes
-    }
-
-    @IBAction func onAddMemeButton(sender: AnyObject) {
-        let memeViewController = storyboard!.instantiateViewControllerWithIdentifier("MemeViewController") as! MemeViewController
-        
-        presentViewController(memeViewController, animated: true, completion: nil)
+    func showDetails(meme: MemeModel) {
+        if let destinationController = storyboard!.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController
+        {
+            destinationController.memeModel = meme
+            navigationController?.pushViewController(destinationController,
+                                                     animated: true)
+        }
     }
 }

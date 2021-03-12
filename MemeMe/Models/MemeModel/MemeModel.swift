@@ -9,12 +9,17 @@
 import UIKit
 
 struct MemeModel {
-    var topText      : NSString!
-    var bottomText   : NSString!
-    var originalImage: UIImage!
-    var memedImage   : UIImage!
+    var topText    : String?
+    var bottomText : String?
     
-    init(topText:NSString, bottomText:NSString, originalImage:UIImage, memedImage:UIImage) {
+    var originalImage : UIImage!
+    var memedImage    : UIImage!
+    
+    init(topText       : String? = "",
+         bottomText    : String? = "",
+         originalImage : UIImage,
+         memedImage    : UIImage)
+    {
         self.topText = topText
         self.bottomText = bottomText
         self.originalImage = originalImage

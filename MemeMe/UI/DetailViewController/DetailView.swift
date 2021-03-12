@@ -12,7 +12,7 @@ class DetailView: UIView {
     @IBOutlet var backButton    : UIButton!
     @IBOutlet var memedImageView: UIImageView!
     
-    func fillWithModel(model:MemeModel) {
+    func fillWithModel(model: MemeModel) {
         memedImageView.image = model.memedImage
     }
 

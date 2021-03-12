@@ -8,31 +8,50 @@
 
 import UIKit
 
-class CollectionSentMemesViewController: SentMemesViewController, UICollectionViewDataSource, UICollectionViewDelegate {
-    @IBOutlet var rootView: CollectionSentMemesRootView!
+class CollectionSentMemesViewController: SentMemesViewController,
+                                         UICollectionViewDataSource,
+                                         UICollectionViewDelegate
+{
     
-    override func viewWillAppear(animated: Bool) {
+    weak private var rootView: CollectionSentMemesRootView? {
+        return viewIfLoaded as? CollectionSentMemesRootView
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        rootView.memesCollectionView.reloadData()
+        if let rootView = rootView {
+            rootView.memesCollectionView.reloadData()
+        }
+        
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return memes.count
+    func collectionView(_ collectionView               : UICollectionView,
+                        numberOfItemsInSection section : Int) -> Int
+    {
+        return memes?.count ?? 0
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SentMemesCollectionViewCell", forIndexPath: indexPath) as! SentMemesCollectionViewCell
-        cell.fillWithModel(memes[indexPath.row])
+    func collectionView(_ collectionView        : UICollectionView,
+                        cellForItemAt indexPath : IndexPath) -> UICollectionViewCell
+    {
+        let cellID = "SentMemesCollectionViewCell"
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID,
+                                                         for: indexPath) as! SentMemesCollectionViewCell
+        if let memes = memes
+        {
+            cell.fillWithModel(model: memes[indexPath.row])
+        }
         
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let destinationController = storyboard!.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
-        destinationController.memeModel = memes[indexPath.row]
-        
-        navigationController!.pushViewController(destinationController, animated: true)
+    func collectionView(_ collectionView          : UICollectionView,
+                        didSelectItemAt indexPath : IndexPath)
+    {
+        if let memes = memes {
+            showDetails(meme: memes[indexPath.row])
+        }
     }
 
 }

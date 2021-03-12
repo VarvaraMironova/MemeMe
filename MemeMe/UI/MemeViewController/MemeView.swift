@@ -25,21 +25,24 @@ class MemeView: UIView {
         
         fillPlaceHolders()
         
-        UITextField.appearance().tintColor = UIColor(red: 83.0/255.0, green: 166.0/255.0, blue: 124.0/255.0, alpha: 1.0)
+        UITextField.appearance().tintColor = UIColor(red    : 83.0/255.0,
+                                                     green  : 166.0/255.0,
+                                                     blue   : 124.0/255.0,
+                                                     alpha  : 1.0)
         
-        UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
+        UIBarButtonItem.appearance().tintColor = UIColor.white
         
-        enableShareButton(false)
+        enableShareButton(enable: false)
     }
     
     func enableShareButton(enable:Bool) {
-        shareButton.enabled = enable
+        shareButton.isEnabled = enable
     }
     
     func fillWithImage(image:UIImage) {
         memeImageView.image = image
         
-        enableShareButton(true)
+        enableShareButton(enable: true)
     }
     
     func clearPlaceHolders() {
@@ -55,7 +58,7 @@ class MemeView: UIView {
     func isBottomTextFieldEditing() -> Bool {
         var result : Bool = false
         
-        if (bottomTextField.isFirstResponder()) {
+        if bottomTextField.isFirstResponder {
             result = true
         }
         

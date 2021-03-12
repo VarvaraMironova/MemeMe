@@ -9,13 +9,14 @@
 import UIKit
 
 class SentMemesTableViewCell: UITableViewCell {
-    @IBOutlet var memedImageView: UIImageView!
-    @IBOutlet var bottomLabel: UILabel!
-    @IBOutlet var topLabel: UILabel!
+    @IBOutlet var memedImageView : UIImageView!
+    @IBOutlet var bottomLabel    : UILabel!
+    @IBOutlet var topLabel       : UILabel!
     
     func fillWithModel(model:MemeModel) {
         memedImageView.image = model.memedImage
-        bottomLabel.text = (model.bottomText as! String)
-        topLabel.text = (model.topText as! String)
+        
+        bottomLabel.text = model.bottomText
+        topLabel.text = model.topText
     }
 }
